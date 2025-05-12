@@ -23,8 +23,6 @@ export function useHome() {
     );
   }, [allProducts?.data, debouncedValue]);
 
-  console.log(filteredProducts);
-
   return {
     allProducts: filteredProducts,
     isFetchingProducts,

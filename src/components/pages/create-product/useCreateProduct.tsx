@@ -32,18 +32,15 @@ export function useCreateProduct({ handleClose }: { handleClose: () => void }) {
         toast.error(
           error?.message ?? "An error occurred performing this action"
         );
-        console.log(error);
       },
     });
 
   const handleAddProduct = handleSubmit((data) => {
-    console.log(data);
     const payload = {
       id: `${Date.now()}-${Math.floor(Math.random() * 1000)}`,
       ...data,
     };
 
-    console.log(payload);
     createProductMutate(payload);
   });
 
