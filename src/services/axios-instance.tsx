@@ -21,7 +21,7 @@ interface MyApiConfig {
 const createAxiosInstance = (config: MyApiConfig = {}): AxiosInstance => {
   const {
     baseURL = `https://fakestoreapi.com`,
-    timeout = 10000,
+    timeout = 20000,
     token = null,
   } = config;
 

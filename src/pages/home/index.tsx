@@ -5,15 +5,28 @@ import ProductCard from "@/components/pages/product-card";
 import type { Product } from "@/type";
 import { motion } from "motion/react";
 import { SkeletonCard } from "@/components/pages/product-card/skeleton";
+import { Input } from "@/components/ui/input";
+import { PackageSearch } from "lucide-react";
 
 const Home = () => {
-  const { selectedAction, isFetchingProducts, setSelectedAction, allProducts } =
-    useHome();
-  console.log(allProducts);
+  const {
+    selectedAction,
+    isFetchingProducts,
+    setSelectedAction,
+    allProducts,
+    setValue,
+  } = useHome();
 
   return (
     <div className="">
-      <div className="flex w-full justify-end">
+      <div className="flex flex-col gap-4 md:flex-row w-full items-center lg:items-start  justify-start lg:justify-between">
+        <div className="w-full max-w-[350px]">
+          <Input
+            placeholder="Search by Product Title"
+            defaultValue={""}
+            onChange={(event) => setValue(event.target.value)}
+          />
+        </div>
         <Button
           variant="outline"
           onClick={() => setSelectedAction("create-product")}
@@ -31,7 +44,7 @@ const Home = () => {
           </div>
         )}
 
-        {!isFetchingProducts && (
+        {!isFetchingProducts && allProducts?.length > 0 ? (
           <motion.div
             initial="hidden"
             animate="visible"
@@ -50,6 +63,11 @@ const Home = () => {
               <ProductCard product={product} key={product.id} />
             ))}
           </motion.div>
+        ) : (
+          <div className="w-full h-[60vh] flex flex-col gap-y-2 items-center justify-center">
+            <PackageSearch className="w-32 h-32" />
+            <h1 className="text-lg ">There are no products at this time</h1>
+          </div>
         )}
       </div>
 
