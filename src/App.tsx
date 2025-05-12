@@ -2,6 +2,8 @@ import { useRef } from "react";
 import AppRouter from "./router";
 import { ReactLenis } from "lenis/react";
 import { BrowserRouter } from "react-router";
+import { Toaster } from "sonner";
+import QueryProvider from "./services/query-provider";
 
 function App() {
   const lenisRef = useRef(null);
@@ -16,9 +18,12 @@ function App() {
         }}
         ref={lenisRef}
       >
-        <BrowserRouter>
-          <AppRouter />
-        </BrowserRouter>
+        <QueryProvider>
+          <BrowserRouter>
+            <Toaster position="top-right" expand={false} />
+            <AppRouter />
+          </BrowserRouter>
+        </QueryProvider>
       </ReactLenis>
     </>
   );
