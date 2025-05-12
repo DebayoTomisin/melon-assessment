@@ -14,11 +14,12 @@ const Heading = forwardRef<HTMLDivElement>((_, ref) => {
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [openMenu, setOpenMenu] = useState(false);
-  console.log("open menu", openMenu);
+
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
+
     if (latest > 0) {
       setAtTop(false);
     } else {
@@ -87,15 +88,13 @@ const Heading = forwardRef<HTMLDivElement>((_, ref) => {
               <div className="fixed min-h-screen inset-0 z-10 bg-black/40 blur-2xl" />
             )}
             <Popover open={openMenu} onOpenChange={setOpenMenu}>
-              <PopoverTrigger>
-                <motion.button
-                  whileTap={{ scaleX: 0.9 }}
-                  className="text-lg cursor-default flex items-center gap-x-1"
-                  onClick={() => setOpenMenu(!openMenu)}
-                >
-                  Menu
-                  {openMenu ? <ChevronUp /> : <ChevronDown />}
-                </motion.button>
+              <PopoverTrigger
+                className="text-lg cursor-default flex items-center gap-x-1"
+                onClick={() => setOpenMenu(!openMenu)}
+              >
+                Menu
+                {openMenu ? <ChevronUp /> : <ChevronDown />}
+                {/* <motion.button whileTap={{ scaleX: 0.9 }}></motion.button> */}
               </PopoverTrigger>
               <PopoverContent className="w-80 bg-white shadow-lg rounded-lg flex flex-col  right-4">
                 <div className="flex w-full items-center justify-between">

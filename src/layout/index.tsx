@@ -7,7 +7,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
   const [ref, { height }] = useMeasure();
   return (
     <main className="min-h-screen max-w-7xl mx-auto relative flex flex-col">
-      <div className="fixed w-full left-0 top-0">
+      <div className="fixed w-full left-0 top-0 z-20">
         <Heading ref={ref} />
       </div>
       <div className="h-full flex-grow" style={{ marginTop: height + 20 }}>
