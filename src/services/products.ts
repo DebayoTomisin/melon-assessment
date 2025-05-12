@@ -2,9 +2,9 @@ import { createAxiosInstance } from "./axios-instance";
 const apiInstance = createAxiosInstance();
 
 interface IProduct {
-  id: number;
+  id: number | string;
   title: string;
-  price: number;
+  price: number | string;
   description: string;
   category: string;
   image: string;
